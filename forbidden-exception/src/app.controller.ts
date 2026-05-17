@@ -1,7 +1,7 @@
 import { Controller, Get, UseFilters, UseGuards, ForbiddenException } from '@nestjs/common';
 import { ForbiddenExceptionFilter } from './forbidden-exception.filter';
 // 1. Import the guard from its actual location in the src folder
-import { StudentGuard } from './student.guard';
+import { StudentGuard } from '../../src/student/student.guard';
  
 @Controller()
 export class AppController {
