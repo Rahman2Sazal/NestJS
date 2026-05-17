@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { StudentGuard } from '../../src/student/student.guard'; 
+import { StudentGuard } from './student/student.guard'; 
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

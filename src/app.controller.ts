@@ -1,7 +1,8 @@
 import { Controller, Get, UseFilters, UseGuards, ForbiddenException } from '@nestjs/common';
-import { ForbiddenExceptionFilter } from './forbidden-exception.filter';
-// 1. Import the guard from its actual location in the src folder
+import { ForbiddenExceptionFilter } from '../../src/forbidden-exception/forbidden-exception.filter';
+
 import { StudentGuard } from '../../src/student/student.guard';
+import { UppercasePipe } from 'C:\Users\Administrator\Administrator\NestJS\src\uppercase\uppercase.pipe.ts';
  
 @Controller()
 export class AppController {
@@ -18,6 +19,11 @@ export class AppController {
   @UseGuards(StudentGuard)
   getStudentLounge() {
     return 'Welcome to the exclusive student lounge!';
+  }
+  @Get('hello/:name')
+  getName(@Param('name', UppercasePipe) name: string) {
+    // The 'name' variable here will already be transformed to uppercase by the time this code runs!
+    return `Hello, ${name}!`;
   }
 
   // This route is completely open
