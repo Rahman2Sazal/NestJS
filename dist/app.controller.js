@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const forbidden_exception_filter_1 = require("./forbidden-exception/forbidden-exception.filter");
 const student_guard_1 = require("./student/student.guard");
 const uppercase_pipe_1 = require("./uppercase/uppercase.pipe");
+const timing_interceptor_1 = require("./timing/timing.interceptor");
 let AppController = class AppController {
     getSecretData() {
         throw new common_1.ForbiddenException();
@@ -29,6 +30,12 @@ let AppController = class AppController {
     }
     getName(name) {
         return `Hello, ${name}!`;
+    }
+    getPerformanceData() {
+        return {
+            message: 'This database call was tracked and clocked!',
+            status: 'success'
+        };
     }
     getPublicData() {
         return 'This is public information!';
@@ -62,6 +69,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "getName", null);
+__decorate([
+    (0, common_1.Get)('performance-data'),
+    (0, common_1.UseInterceptors)(timing_interceptor_1.TimingInterceptor),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], AppController.prototype, "getPerformanceData", null);
 __decorate([
     (0, common_1.Get)('public-data'),
     __metadata("design:type", Function),

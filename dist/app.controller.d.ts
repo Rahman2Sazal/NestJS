@@ -3,5 +3,9 @@ export declare class AppController {
     getStudents(): string[];
     getStudentLounge(): string;
     getName(name: string): string;
+    getPerformanceData(): {
+        message: string;
+        status: string;
+    };
     getPublicData(): string;
 }
