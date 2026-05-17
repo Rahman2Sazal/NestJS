@@ -1,19 +1,27 @@
-import { Controller, Get, UseFilters, ForbiddenException } from '@nestjs/common';
-import { ForbiddenExceptionFilter } from './forbidden-exception.filter'; // Import your new filter
-
+import { Controller, Get, UseFilters, UseGuards, ForbiddenException } from '@nestjs/common';
+import { ForbiddenExceptionFilter } from './forbidden-exception.filter';
+// 1. Import the guard from its actual location in the src folder
+import { StudentGuard } from './student.guard';
+ 
 @Controller()
 export class AppController {
 
+  // This route uses the Exception Filter
   @Get('secret-data')
-  // 1. Apply the filter ONLY to this method
   @UseFilters(ForbiddenExceptionFilter) 
   getSecretData() {
-    // 2. Deliberately trigger the exception to test your filter
     throw new ForbiddenException();
   }
 
+  // 2. Add this NEW route right here that uses the Guard
+  @Get('student-lounge')
+  @UseGuards(StudentGuard)
+  getStudentLounge() {
+    return 'Welcome to the exclusive student lounge!';
+  }
+
+  // This route is completely open
   @Get('public-data')
-  // This method doesn't have the filter, so it acts normally
   getPublicData() {
     return 'This is public information!';
   }
