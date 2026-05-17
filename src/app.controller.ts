@@ -11,6 +11,10 @@ export class AppController {
   getSecretData() {
     throw new ForbiddenException();
   }
+  @Get('students')
+  getStudents() {
+    return ['Student A', 'Student B', 'Student C'];
+  }
 
   @Get('student-lounge')
   @UseGuards(StudentGuard)
