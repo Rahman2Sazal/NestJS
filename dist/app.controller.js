@@ -14,9 +14,9 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
-const forbidden_exception_filter_1 = require("./forbidden-exception.filter");
-const student_guard_1 = require("./student.guard");
-const uppercase_pipe_1 = require("./uppercase.pipe");
+const forbidden_exception_filter_1 = require("./forbidden-exception/forbidden-exception.filter");
+const student_guard_1 = require("./student/student.guard");
+const uppercase_pipe_1 = require("./uppercase/uppercase.pipe");
 let AppController = class AppController {
     getSecretData() {
         throw new common_1.ForbiddenException();

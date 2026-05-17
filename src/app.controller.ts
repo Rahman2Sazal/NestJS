@@ -1,7 +1,7 @@
 import { Controller, Get, UseFilters, UseGuards, ForbiddenException, Param } from '@nestjs/common';
-import { ForbiddenExceptionFilter } from './forbidden-exception.filter';
-import { StudentGuard } from './student.guard';
-import { UppercasePipe } from './uppercase.pipe'; // 1. Import your new pipe
+import { ForbiddenExceptionFilter } from './forbidden-exception/forbidden-exception.filter';
+import { StudentGuard } from './student/student.guard';
+import { UppercasePipe } from './uppercase/uppercase.pipe'; // 1. Import your new pipe
 
 @Controller()
 export class AppController {
